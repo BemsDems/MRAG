@@ -40,8 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Center(
               child: FutureBuilder<MangaModel>(
                 builder: (context, snapshot) {
-                  
-                 
                   if (snapshot.hasData) {
                     return Stack(
                         alignment: AlignmentDirectional.bottomCenter,
@@ -56,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               OneAttributes qwe = snapshot
                                   .data!.mangaList![index].attributesList!;
                               List qwer = qwe.title!.values.toList();
-                              
+
                               return Stack(
                                 alignment: AlignmentDirectional.center,
                                 children: [
@@ -82,17 +80,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                           ),
                                         )
                                       : SizedBox(),
+                                  Container(
+                                    width: 1000,
+                                    height: 1000,
+                                    color: Colors.amberAccent,
+                                  )
                                 ],
                               );
                             },
                             itemCount: snapshot.data!.mangaList!.length,
                           ),
-                          snapshot.hasData ? Container(
-                            child: Text(
-                              '${snapshot.data!.mangaList!.length}',
-                              style: TextStyle(fontSize: 30),
-                            ),
-                          ) : Icon(Icons.circle_notifications)
+                          snapshot.hasData
+                              ? Container(
+                                  child: Text(
+                                    '${snapshot.data!.mangaList!.length}',
+                                    style: TextStyle(fontSize: 30),
+                                  ),
+                                )
+                              : Icon(Icons.circle_notifications)
                         ]);
                   } else {
                     return Center(child: CircularProgressIndicator());
